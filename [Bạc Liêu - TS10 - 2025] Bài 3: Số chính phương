@@ -1,0 +1,116 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Information{
+    string Name = "TRAN DAI NGHIA";
+    string Birthday = "15/01/2007";
+    string HighSchool = "Tuyen Quang Gifted School";
+    string University = "???";
+};
+
+/// random number
+mt19937_64 rd(time(0));
+long long rand(long long L, long long R){
+    if(L > R) return 0;
+    return L + rd() % (R - L + 1);
+}
+
+/// constant modulo
+const int MOD[12] = {1000000007, 1000000009, 1000000021, 1000000033,
+                     1000000087, 1000000093, 1000000097, 1000000103,
+                     1000000123, 1000000181, 1000000207, 1000000223};
+/// algorithm
+
+/// my judge
+chrono::milliseconds runTime;
+
+void MakeTest(int& iTest){
+    ofstream cout(("test" + to_string(iTest) + ".inp").c_str());
+
+    return;
+}
+
+void BruteForce(int& iTest){
+    ifstream cin(("test" + to_string(iTest) + ".inp").c_str());
+    ofstream cout(("test" + to_string(iTest) + ".ans").c_str());
+
+    return;
+}
+
+void Solution(int& iTest){
+    ifstream cin(("test" + to_string(iTest) + ".inp").c_str());
+    ofstream cout(("test" + to_string(iTest) + ".out").c_str());
+    chrono::high_resolution_clock::time_point Start = chrono::high_resolution_clock::now();
+
+    chrono::high_resolution_clock::time_point End = chrono::high_resolution_clock::now();
+    runTime = chrono::duration_cast<chrono::milliseconds>(End - Start);
+
+    return;
+}
+
+void AutoJudge(){
+    for(int iTest = 1, numTest = 10; iTest <= numTest; ++iTest){
+        MakeTest(iTest);
+        BruteForce(iTest);
+        Solution(iTest);
+
+        string fileOut = "test" + to_string(iTest) + ".out";
+        string fileAns = "test" + to_string(iTest) + ".ans";
+        string cmd = "fc \"" + fileOut + "\" \"" + fileAns + "\"";
+
+        if(system(cmd.c_str()) != 0){
+            cout << "Test " << iTest << ": \033[31mWRONG\033[0m";
+        }
+        else{
+            cout << "Test " << iTest << ": \033[32mACCEPT\033[0m";
+        }
+
+        cout << "\n" << "Runtime: " << runTime.count() << "ms" << "\n" << "\n";
+    }
+
+    return;
+}
+
+/// submit code
+namespace sub1{
+    bool Check(){
+        return 0;
+    }
+
+    void Solve(){
+        return;
+    }
+}
+
+namespace subFull{
+    bool Check(){
+        return 1;
+    }
+
+    void Solve(){
+        int n, result = 0;
+        cin >> n;
+
+        for(int i = 1; i <= n; i++){
+            int Ai; cin >> Ai;
+            int sqrtAi = sqrt(Ai);
+            result += (sqrtAi * sqrtAi == Ai);
+        }
+
+        cout << result;
+
+        return;
+    }
+}
+
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(nullptr); cout.tie(nullptr);
+
+//    AutoJudge();
+
+    if(sub1::Check()) return sub1::Solve(), 0;
+    if(subFull::Check()) return subFull::Solve(), 0;
+
+    return 0;
+}
